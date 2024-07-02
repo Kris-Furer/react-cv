@@ -1,95 +1,66 @@
+'use client';
+import { useState } from 'react';
 import Image from "next/image";
 import styles from "./page.module.css";
+import reset from "./reset.css";
+import JobSection from './components/JobSection';
+import EducationSection from './components/EducationSection';
 
 export default function Home() {
+  const [activeSection, setActiveSection] = useState('home');
+
+  const getContent = () => {
+    switch (activeSection) {
+      case 'home':
+        return 'Home Time!';
+      case 'work-experience':
+        return <JobSection />;
+      case 'education':
+        return <EducationSection />;
+      default:
+        return 'Content for default case';
+    }
+  };
+
+  const handleSetActiveSection = (section) => {
+    setActiveSection(section);
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="container">
+      <div className="side-nav">
+        <div className="side-nav-inner">
+          <img className="profile" src="/img/kfurer.jpg" alt="" />
+          <nav>
+            <button onClick={() => handleSetActiveSection('home')}>
+              <h1>Kris Furer</h1>
+            </button>
+            <button onClick={() => handleSetActiveSection('education')}>
+              <h2>Education</h2>
+            </button>
+            <button onClick={() => handleSetActiveSection('work-experience')}>
+              <h2>Work Experience</h2>
+            </button>
+            <button onClick={() => handleSetActiveSection('references')}>
+              <h2>References</h2>
+            </button>
+            <button onClick={() => handleSetActiveSection('projects')}>
+              <h2>Projects</h2>
+            </button>
+            <button onClick={() => handleSetActiveSection('skills')}>
+              <h2>Skills</h2>
+            </button>
+            <button onClick={() => handleSetActiveSection('contact')}>
+              <h2>Contact</h2>
+            </button>
+          </nav>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="content-container">
+        <div className="content">
+          {getContent()}
+        </div>
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }
