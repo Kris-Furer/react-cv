@@ -5,6 +5,12 @@ import styles from "./page.module.css";
 import reset from "./reset.css";
 import JobSection from './components/JobSection';
 import EducationSection from './components/EducationSection';
+import ContactSection from './components/ContactSection';
+import HomeSection from './components/HomeSection';
+import ProjectSection from './components/ProjectSection';
+import SkillsSection from './components/SkillsSection';
+
+
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
@@ -12,11 +18,18 @@ export default function Home() {
   const getContent = () => {
     switch (activeSection) {
       case 'home':
-        return 'Home Time!';
+        return <HomeSection />;
       case 'work-experience':
         return <JobSection />;
       case 'education':
         return <EducationSection />;
+      case 'contact':
+        return <ContactSection />;
+        case 'projects':
+        return <ProjectSection />;
+        case 'skills':
+          return <SkillsSection />;
+        
       default:
         return 'Content for default case';
     }
@@ -30,32 +43,40 @@ export default function Home() {
     <div className="container">
       <div className="side-nav">
         <div className="side-nav-inner">
-          <img className="profile" src="/img/kfurer.jpg" alt="" />
-          <nav>
+          <div className="profile-container">
+
+          <Image className="profile" src="/img/kfurer.jpg" alt="" width={500} height={500}/>
+          </div>
+          
             <button onClick={() => handleSetActiveSection('home')}>
               <h1>Kris Furer</h1>
+              <p class='sub-heading'>Web Design & Development</p>
             </button>
+            <nav>
+            <button onClick={() => handleSetActiveSection('home')}>
+              About
+            </button>
+            
             <button onClick={() => handleSetActiveSection('education')}>
-              <h2>Education</h2>
+              Education
             </button>
             <button onClick={() => handleSetActiveSection('work-experience')}>
-              <h2>Work Experience</h2>
-            </button>
-            <button onClick={() => handleSetActiveSection('references')}>
-              <h2>References</h2>
+              Work Experience
             </button>
             <button onClick={() => handleSetActiveSection('projects')}>
-              <h2>Projects</h2>
+              Projects
             </button>
             <button onClick={() => handleSetActiveSection('skills')}>
-              <h2>Skills</h2>
+              Skills
             </button>
             <button onClick={() => handleSetActiveSection('contact')}>
-              <h2>Contact</h2>
+              Contact
             </button>
           </nav>
         </div>
       </div>
+
+      
       <div className="content-container">
         <div className="content">
           {getContent()}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Job = ({ title, company, period, responsibilities }) => (
-  <div className="job">
+  <div className="item">
     <h3>{title}</h3>
     <h4>{company} ({period})</h4>
     <ul>
