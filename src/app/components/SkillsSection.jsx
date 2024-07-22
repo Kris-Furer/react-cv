@@ -44,32 +44,18 @@ const SkillsSection = () => {
                 <div className="skills-flex">
 
                     <div className="item">
-                        English (native)
+                        Problem Solving/Creativity
                     </div>
                     <div className="item">
-                        Html/CSS/Sass
+                        Self-Learning
                     </div>
                     <div className="item">
-                        Php
+                        Team Work
                     </div>
                     <div className="item">
-                        Javascript
+                       Interpersonal Skills
                     </div>
-                    <div className="item">
-                        Wordpress
-                    </div>
-                    <div className="item">
-                        Figma
-                    </div>
-                    <div className="item">
-                        Adobe Creative Cloud
-                    </div>
-                    <div className="item">
-                        Node Js
-                    </div>
-                    <div className="item">
-                        Git
-                    </div>
+             
                 </div>
             </div>
         </div>

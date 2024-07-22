@@ -9,11 +9,15 @@ import ContactSection from './components/ContactSection';
 import HomeSection from './components/HomeSection';
 import ProjectSection from './components/ProjectSection';
 import SkillsSection from './components/SkillsSection';
+import SocialSection from './components/SocialSection';
+import { GiHamburgerMenu } from "react-icons/gi";
 
 
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState('');
+
 
   const getContent = () => {
     switch (activeSection) {
@@ -25,58 +29,83 @@ export default function Home() {
         return <EducationSection />;
       case 'contact':
         return <ContactSection />;
-        case 'projects':
+      case 'projects':
         return <ProjectSection />;
-        case 'skills':
-          return <SkillsSection />;
-        
+      case 'skills':
+        return <SkillsSection />;
+
       default:
         return 'Content for default case';
     }
   };
-
-  const handleSetActiveSection = (section) => {
+  const handleSetActiveSection = (section, event) => {
     setActiveSection(section);
   };
 
+  const openMobile = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  }
+  
+
   return (
     <div className="container">
-      <div className="side-nav">
+      <div className={` side-nav ${isMobileMenuOpen ? 'open' : ''}`}>
         <div className="side-nav-inner">
           <div className="profile-container">
 
-          <Image className="profile" src="/img/kfurer.jpg" alt="" width={500} height={500}/>
+            <Image className="profile desktop" src="/img/kfurer.jpg" alt="" width={500} height={500} />
           </div>
-          
-            <button onClick={() => handleSetActiveSection('home')}>
-              <h1>Kris Furer</h1>
-              <p class='sub-heading'>Web Design & Development</p>
-            </button>
-            <nav>
-            <button onClick={() => handleSetActiveSection('home')}>
+
+          <button onClick={() => handleSetActiveSection('home', event)}>
+            <h1>Kris Furer</h1>
+            <p className='sub-heading'>Web Design & Development</p>
+          </button>
+          <nav className='desktop'>
+            <button 
+              className={activeSection === 'home' ? 'active' : ''} 
+              onClick={() => handleSetActiveSection('home')}
+            >
               About
             </button>
-            
-            <button onClick={() => handleSetActiveSection('education')}>
+            <button 
+              className={activeSection === 'education' ? 'active' : ''} 
+              onClick={() => handleSetActiveSection('education')}
+            >
               Education
             </button>
-            <button onClick={() => handleSetActiveSection('work-experience')}>
+            <button 
+              className={activeSection === 'work-experience' ? 'active' : ''} 
+              onClick={() => handleSetActiveSection('work-experience')}
+            >
               Work Experience
             </button>
-            <button onClick={() => handleSetActiveSection('projects')}>
+            <button 
+              className={activeSection === 'projects' ? 'active' : ''} 
+              onClick={() => handleSetActiveSection('projects')}
+            >
               Projects
             </button>
-            <button onClick={() => handleSetActiveSection('skills')}>
+            <button 
+              className={activeSection === 'skills' ? 'active' : ''} 
+              onClick={() => handleSetActiveSection('skills')}
+            >
               Skills
             </button>
-            <button onClick={() => handleSetActiveSection('contact')}>
+            <button 
+              className={activeSection === 'contact' ? 'active' : ''} 
+              onClick={() => handleSetActiveSection('contact')}
+            >
               Contact
             </button>
           </nav>
+
         </div>
+        < SocialSection className="desktop" />
+        <GiHamburgerMenu  className="mobile" onClick={() => openMobile()} size={30}/>
+
       </div>
 
-      
+
       <div className="content-container">
         <div className="content">
           {getContent()}
